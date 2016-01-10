@@ -1,95 +1,102 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Index Page for initial setup</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/myLayout.css">
+    <title>Welcome!</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     <script type="text/javascript" src = "js/jquery.min.js"></script>
     <script type="text/javascript" src = "js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<!-- --------------------------------------- -->
-<!-- header -->
 <div id = "header">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#"><img src="images/logo.png"></a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+    <nav class = "navbar navbar-inverse navbar-fixed-top">
+        <div id = "container">
+            <div class = "navbar-header">
+                <a href="" class = "navbar-brand">Hello World!</a>
+            </div>        
+            <div id = "navbar" class = "navbar-collapse collapse">
+                <ul class = "nav navbar-nav">
+                    <li class = "active"> <a href="#">Home</a> </li>
+                    <li> <a href="#InterDesigner">InterDesigner</a> </li>
+                    <li> <a href="#Algoheimerz">Algoheimerz</a> </li>
                 </ul>
             </div>
         </div>
     </nav>
 </div>
 
-<div id = "content">
-    <!-- --------------------------------------- -->
-    <!-- Sidebar -->
-    <div id = "sidebar">
-
-
-
-
-        <div id = "accordion" class = "panel-group">
-            <div class = "panel panel-default">
-                <div class = "panel-heading">
-                    <h4 class = "panel-title">
-                        <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapseOne"> Wall </a>
-                    </h4>
-                </div>
-                <div id = "collapseOne" class = "panel-collapse collapse in">
-                    <div class = "panel-body">
-                        Content for test 1
-                    </div>
-                </div>
+<div class = "jumbotron" id = "InterDesigner">
+    <h1 align = "center"><a href="InterDesigner/index.html">InterDesigner</a></h1>
+    <div id = "interdesignercarousel" class = "carousel slide" data-ride = "carousel">
+        <ol class = "carousel-indicators">
+            <li data-target = "#interdesignercarousel" data-slide-to = "0" class = "active"></li>
+            <li data-target = "#interdesignercarousel" data-slide-to = "1"></li>
+            <li data-target = "#interdesignercarousel" data-slide-to = "2"></li>
+            <li data-target = "#interdesignercarousel" data-slide-to = "3"></li>
+        </ol>
+        <div class = "carousel-inner" role  "listbox">
+            <div class = "item active">
+                <h4 align = "center"> Carousel 0 </h4>
             </div>
-
-            <div class = "panel panel-default">
-                <div class = "panel-heading">
-                    <h4 class = "panel-title">
-                        <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapseTwo"> Furniture </a>
-                    </h4>
-                </div>
-                <div id = "collapseTwo" class = "panel-collapse collapse">
-                    <div class = "panel-body">
-                        <img src="images/Carousel1.jpg" height="45" width="80" class = "img-thumbnail img-circle">
-                        <img src="images/Carousel2.jpg" height="45" width="80" class = "img-thumbnail img-responsive">
-                        <img src="images/Carousel3.jpg" height="45" width="80" class = "img-thumbnail">
-                        <img src="images/Carousel1.jpg" height="45" width="80" class = "img-thumbnail">
-                    </div>
-                    
-                </div>
+            <div class = "item">
+                <h4 align = "center"> Carousel 1 </h4>
             </div>
-
+            <div class = "item">
+                <h4 align = "center"> Carousel 2 </h4>
+            </div>
+            <div class = "item">
+                <h4 align = "center"> Carousel 3 </h4>
+            </div>
         </div>
-
-
-    </div>
-
-    <!-- --------------------------------------- -->
-    <!-- Contents -->
-    <div id = "main">
-    <!--     <div id = "viewport">
-            <p>The Viewport</p>
-        </div>
-        <div>
-            <p>Statistics</p>
-        </div> -->
-        Contents
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#interdesignercarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <!-- <span class="sr-only">Previous</span> -->
+        </a>
+        <a class="right carousel-control" href="#interdesignercarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
 </div>
 
-
-<!-- --------------------------------------- -->
-<!-- Footer -->
-<div id = "Footer">
-    
+<div class = "jumbotron" id = "Algoheimerz">
+    <h1 align = "center"><a href="Algoheimerz/index.html">Algoheimerz</a></h1>
+    <div id = "algoheimerzcarousel" class = "carousel slide" data-ride = "carousel">
+        <ol class = "carousel-indicators">
+            <li data-target = "#algoheimerzcarousel" data-slide-to = "0" class = "active"></li>
+            <li data-target = "#algoheimerzcarousel" data-slide-to = "1"></li>
+            <li data-target = "#algoheimerzcarousel" data-slide-to = "2"></li>
+            <li data-target = "#algoheimerzcarousel" data-slide-to = "3"></li>
+        </ol>
+        <div class = "carousel-inner" role  "listbox">
+            <div class = "item active">
+                <h4 align = "center"> Carousel 0 </h4>
+            </div>
+            <div class = "item">
+                <h4 align = "center"> Carousel 1 </h4>
+            </div>
+            <div class = "item">
+                <h4 align = "center"> Carousel 2 </h4>
+            </div>
+            <div class = "item">
+                <h4 align = "center"> Carousel 3 </h4>
+            </div>
+        </div>
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#algoheimerzcarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <!-- <span class="sr-only">Previous</span> -->
+        </a>
+        <a class="right carousel-control" href="#algoheimerzcarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 </div>
 
 </body>
+
+<script type="text/javascript" src = "js/main.js"></script>
 </html>

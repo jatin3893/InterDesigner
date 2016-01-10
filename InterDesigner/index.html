@@ -1,0 +1,77 @@
+<html>
+<head>
+    <title>Index Page for initial setup</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/myLayout.css">
+    <script type="text/javascript" src = "js/jquery.min.js"></script>
+    <script type="text/javascript" src = "js/bootstrap.min.js"></script>
+    <script type="text/javascript" src = "js/custom.js"></script>
+</head>
+<body>
+
+<!-- --------------------------------------- -->
+<!-- header -->
+<div id = "header">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><img src="images/logo.png"></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div id = "content">
+    <!-- --------------------------------------- -->
+    <!-- Sidebar -->
+    <div id = "sidebar">
+
+        <div id = "accordion" class = "panel-group">
+            <div class = "panel panel-default">
+                <div class = "panel-heading">
+                    <h4 class = "panel-title">
+                        <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapseOne"> Wall </a>
+                    </h4>
+                </div>
+                <div id = "collapseOne" class = "panel-collapse collapse in">
+                    <div class = "panel-body">
+                        Content for test 1
+                    </div>
+                </div>
+            </div>
+
+            <div class = "panel panel-default">
+                <div class = "panel-heading">
+                    <h4 class = "panel-title">
+                        <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapseTwo"> Furniture </a>
+                    </h4>
+                </div>
+                <div id = "collapseTwo" class = "panel-collapse collapse">
+                    <div class = "panel-body">
+                        <img src="images/Carousel1.jpg" height="45" width="80" class = "img-thumbnail img-circle">
+                        <img src="images/Carousel2.jpg" height="45" width="80" class = "img-thumbnail img-responsive">
+                        <img src="images/Carousel3.jpg" height="45" width="80" class = "img-thumbnail">
+                        <img src="images/Carousel1.jpg" height="45" width="80" class = "img-thumbnail">
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- --------------------------------------- -->
+    <!-- Contents -->
+    <div id = "viewport">
+        <p>The Viewport</p>
+    </div>
+</div>
+</body>
+</html>
