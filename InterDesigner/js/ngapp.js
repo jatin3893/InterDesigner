@@ -83,6 +83,7 @@ function toolbarController($scope) {
                 onMouseClick: function(tool) {
                     console.log("Add to viewport");
                     console.log(tool);
+                    $("#viewport").trigger("addToViewport");
                 }
             },
             favourite = {
