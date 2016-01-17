@@ -37,9 +37,16 @@ function toolbarController($scope) {
                 id: 'sofa_',
                 prefix: 'images/tools/sofa/',
                 list: [
-                    'sofa_gray',
-                    'sofa_dalmation_2',
-                    'sofa_dalmation_3'
+                    'sofa_spot',
+                    'sofa_cream',
+                ]
+            },
+            chair = {
+                title: 'Chairs',
+                id: 'chair_',
+                prefix: 'images/tools/chair/',
+                list: [
+                    'chair_yellow'
                 ]
             },
             cupboard = {
@@ -47,7 +54,6 @@ function toolbarController($scope) {
                 id: 'cupboard_',
                 prefix: 'images/tools/cupboard/',
                 list: [
-                    'cupboard_brown'
                 ]
             },
             table = {
@@ -57,21 +63,11 @@ function toolbarController($scope) {
                 list: [
                 ]
             },
-            chair = {
-                title: 'Chairs',
-                id: 'chair_',
-                prefix: 'images/tools/chair/',
-                list: [
-                    'chair_black'
-                ]
-            },
             bed = {
                 title: 'Bed',
                 id: 'bed_',
                 prefix: 'images/tools/bed/',
                 list: [
-                    'bed_brown',
-                    'cube_red'
                 ]
             },
             others = {
@@ -79,8 +75,6 @@ function toolbarController($scope) {
                 id: 'others_',
                 prefix: 'images/tools/others/',
                 list: [
-                    'painting_rect',
-                    'vase_flower'
                 ]
             }
         ],

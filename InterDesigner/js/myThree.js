@@ -10,8 +10,7 @@ $(document).ready(function() {
     scene = new THREE.Scene();
     renderer = new THREE.WebGLRenderer();
 
-    renderer.setSize(container.width(), container.height());
-    console.log(container.width() + ' ' + container.height());
+    renderer.setSize(container.width(), container.height())
     container.append(renderer.domElement);
 
     // Display grid of 100x100 for simplicity
@@ -60,17 +59,20 @@ $(document).ready(function() {
         camera.updateProjectionMatrix();
     }
 
-    container.on('click', function(event) {
-        console.log('Click!');
+    container.on('mousedown', function(event) {
         mouse.set( (event.offsetX / container.width()) * 2 - 1, -((event.offsetY / container.height()) * 2 - 1));
         raycaster.setFromCamera(mouse, camera);
         var intersects = raycaster.intersectObjects(objectsInScene, true);
         if (intersects.length > 0) {
             currentObject = intersects[0].object;
+            if (currentObject == transformControls) {
+       
+                return;
+            }
             if (currentObject != selectedObject) {
                 if (selectedObject != undefined) {
+                    transformControls.detach(selectedObject);
                     scene.remove(boxHelper);
-                    scene.remove(transformControls);
                 }
                 selectedObject = currentObject;
                 boundingBoxHelper = new THREE.BoundingBoxHelper( selectedObject, 0xff0000 );
@@ -83,15 +85,14 @@ $(document).ready(function() {
         } else {
             // Clear Selection!
             if (selectedObject != undefined) {
-                selectedObject = undefined;
+                transformControls.detach(selectedObject);
                 scene.remove(boxHelper);
-                scene.remove(transformControls);
+                selectedObject = undefined;
             }
         }
     });
 
     loadMTLFile = function(objFilePath, mtlFilePath, onLoaded, onProgress, onError) {
-        console.log('Load mtl file!');
         var objLoader = new THREE.OBJMTLLoader();
         objLoader.load( objFilePath, mtlFilePath, onLoaded, onProgress, onError );
     }
@@ -145,7 +146,8 @@ $(document).ready(function() {
     }
     function update() {
         orbitControls.update();
-        if (boundingBoxHelper != undefined)
+        if (boundingBoxHelper != undefined) {
             boundingBoxHelper.update();
+        }
     }
 });
