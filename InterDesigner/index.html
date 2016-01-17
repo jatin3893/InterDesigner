@@ -44,15 +44,15 @@
                 </h4>
             </div>
             <div id = "{{tools.id + tool.id}}" class = "panel-collapse collapse">
-                <div class = "panel-body" ng-repeat = "thumb in tool.list track by $index">
-                    <img ng-src= "{{ tool.prefix + thumb }}" height="45" width="80" class = "img-thumbnail" >
+                <div class = "panel-body" ng-repeat = "toolname in tool.list track by $index">
+                    <img ng-src= "{{ tool.prefix + toolname + '/thumbnail.jpg' }}" height="45" width="80" class = "img-thumbnail" >
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Action <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" >
                             <li ng-repeat = "action in tools.actions track by $index">
-                                <a ng-click = "onActionClick(action, thumb)">{{ action.title }}</a>
+                                <a ng-click = "onActionClick(action, tool.prefix + toolname)">{{ action.title }}</a>
                             </li>
                         </ul>
                     </div>
@@ -71,6 +71,9 @@
 <div id = "viewport">
     <!-- Import other relevant three js files like obj loaders -->
     <script type="text/javascript" src = "js/ThreeJS/OrbitControls.js"></script>
+    <script type="text/javascript" src = "js/ThreeJS/MTLLoader.js"></script>
+    <script type="text/javascript" src = "js/ThreeJS/OBJMTLLoader.js"></script>
+    
     <div id = "viewportContainer">
         
     </div>
