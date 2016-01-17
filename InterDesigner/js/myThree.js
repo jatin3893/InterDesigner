@@ -1,17 +1,16 @@
 
 var renderer, scene, camera, container;
-var controls;
+var orbitControls, transformControls;
 var lastPos = 0;
 var objectsInScene = [];
 
 $(document).ready(function() {
     // Initial setup of scene
-    container = $("#viewportContainer");
+    container = $('#viewportContainer');
     scene = new THREE.Scene();
     renderer = new THREE.WebGLRenderer();
 
-    renderer.setSize(container.width(), container.height());
-    console.log(container.width() + " " + container.height());
+    renderer.setSize(container.width(), container.height())
     container.append(renderer.domElement);
 
     // Display grid of 100x100 for simplicity
@@ -26,23 +25,26 @@ $(document).ready(function() {
     var gridMaterial = new THREE.LineBasicMaterial({color: 0xffffff});
     var gridMesh = new THREE.Line(gridGeometry, gridMaterial, THREE.LinePieces);
     scene.add(gridMesh);
-    // objectsInScene.push(gridMesh);
 
     // Add camera
     camera = new THREE.PerspectiveCamera(45, container.width() / container.height(), 0.1, 1000);
     camera.position.set(50, 50, 50);
     camera.lookAt(scene.position);
-    controls = new THREE.OrbitControls( camera, renderer.domElement );
     scene.add(camera);
+
+    orbitControls = new THREE.OrbitControls( camera, renderer.domElement );
+    transformControls = new THREE.TransformControls(camera, renderer.domElement);
+    transformControls.addEventListener('change', render);
 
     // Give option to add more lights
     // Add default lights
     var light = new THREE.PointLight(0xffffff);
     light.position.set(0,250,0);
     scene.add(light);
+
     var ambientLight = new THREE.AmbientLight(0xffffff);
     scene.add(ambientLight);
-    
+
     var raycaster = new THREE.Raycaster();
     var mouse = new THREE.Vector2();
     var boundingBoxHelper, boxHelper, selectedObject;
@@ -57,32 +59,69 @@ $(document).ready(function() {
         camera.updateProjectionMatrix();
     }
 
-    container.on("click", function(event) {
-        event.preventDefault();
+    container.on('mousedown', function(event) {
         mouse.set( (event.offsetX / container.width()) * 2 - 1, -((event.offsetY / container.height()) * 2 - 1));
         raycaster.setFromCamera(mouse, camera);
         var intersects = raycaster.intersectObjects(objectsInScene, true);
         if (intersects.length > 0) {
             currentObject = intersects[0].object;
+            if (currentObject == transformControls) {
+       
+                return;
+            }
             if (currentObject != selectedObject) {
-                if (selectedObject != undefined)
+                if (selectedObject != undefined) {
+                    transformControls.detach(selectedObject);
                     scene.remove(boxHelper);
-                boundingBoxHelper = new THREE.BoundingBoxHelper( currentObject, 0xff0000 );
+                }
+                selectedObject = currentObject;
+                boundingBoxHelper = new THREE.BoundingBoxHelper( selectedObject, 0xff0000 );
                 boundingBoxHelper.update();
                 boxHelper = new THREE.BoxHelper(boundingBoxHelper);
                 scene.add(boxHelper);
-                selectedObject = currentObject;
+                transformControls.attach(selectedObject);
+                scene.add(transformControls);
+            }
+        } else {
+            // Clear Selection!
+            if (selectedObject != undefined) {
+                transformControls.detach(selectedObject);
+                scene.remove(boxHelper);
+                selectedObject = undefined;
             }
         }
     });
 
     loadMTLFile = function(objFilePath, mtlFilePath, onLoaded, onProgress, onError) {
-        console.log('Load mtl file!');
         var objLoader = new THREE.OBJMTLLoader();
         objLoader.load( objFilePath, mtlFilePath, onLoaded, onProgress, onError );
     }
+    $('#viewport').on('customKeyDown', function(event, keyDownEvent) {
+        var keyCode = keyDownEvent.keyCode || keyDownEvent.which;
+        switch(keyCode) {
+        case 17: // Ctrl
+            transformControls.setTranslationSnap( 5 );
+            transformControls.setRotationSnap( THREE.Math.degToRad( 15 ) );
+        case 87: // W
+            transformControls.setMode('translate');
+            break;
+        case 69: // E
+            transformControls.setMode('rotate');
+            break;
+        }
+    });
 
-    $("#viewport").on("addToViewport", function(event, tool) {
+    $('#viewport').on('customKeyUp', function(event, keyUpEvent) {
+        var keyCode = keyUpEvent.keyCode || keyUpEvent.which;
+        switch(keyCode) {
+        case 17: // Ctrl
+            transformControls.setTranslationSnap(null);
+            transformControls.setRotationSnap(null);
+            break;
+        }
+    });
+
+    $('#viewport').on('addToViewport', function(event, tool) {
         onLoaded = function(toolObject) {
                 toolObject.position.x = 0;
                 toolObject.position.z = 0;
@@ -106,8 +145,9 @@ $(document).ready(function() {
         renderer.render(scene, camera);
     }
     function update() {
-        controls.update();
-        if (boundingBoxHelper != undefined)
+        orbitControls.update();
+        if (boundingBoxHelper != undefined) {
             boundingBoxHelper.update();
+        }
     }
 });
