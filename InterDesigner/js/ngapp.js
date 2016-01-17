@@ -31,7 +31,9 @@ function toolbarController($scope) {
                 id: "sofa_",
                 prefix: "images/tools/sofa/",
                 list: [
-                    "sofa_gray.jpg",
+                    "sofa_gray",
+                    "sofa_dalmation_2",
+                    "sofa_dalmation_3"
                 ]
             },
             cupboard = {
@@ -39,7 +41,7 @@ function toolbarController($scope) {
                 id: "cupboard_",
                 prefix: "images/tools/cupboard/",
                 list: [
-                    "cupboard_brown.jpg"
+                    "cupboard_brown"
                 ]
             },
             table = {
@@ -47,7 +49,6 @@ function toolbarController($scope) {
                 id: "table_",
                 prefix: "images/tools/table/",
                 list: [
-                    "table_brown.png"
                 ]
             },
             chair = {
@@ -55,7 +56,7 @@ function toolbarController($scope) {
                 id: "chair_",
                 prefix: "images/tools/chair/",
                 list: [
-                    "chair_pink.jpg"
+                    "chair_black"
                 ]
             },
             bed = {
@@ -63,7 +64,8 @@ function toolbarController($scope) {
                 id: "bed_",
                 prefix: "images/tools/bed/",
                 list: [
-                    "bed_brown.jpg"
+                    "bed_brown",
+                    "cube_red"
                 ]
             },
             others = {
@@ -71,8 +73,8 @@ function toolbarController($scope) {
                 id: "others_",
                 prefix: "images/tools/others/",
                 list: [
-                    "painting_rect.jpg",
-                    "vase_flower.jpg"
+                    "painting_rect",
+                    "vase_flower"
                 ]
             }
         ],
@@ -83,7 +85,7 @@ function toolbarController($scope) {
                 onMouseClick: function(tool) {
                     console.log("Add to viewport");
                     console.log(tool);
-                    $("#viewport").trigger("addToViewport");
+                    $("#viewport").trigger("addToViewport", [tool]);
                 }
             },
             favourite = {
