@@ -1,17 +1,23 @@
-// jQuery parts
 $(document).ready(function() {
     // Setup sidebar
     // Hide the secondary panel
-    $("#secondaryPanel").slideToggle();
+    $('#secondaryPanel').slideToggle();
 
 });
 
-$(document).keydown(function(e){
-    var code = e.keyCode || e.which;
-    if (code == 65) {
-        $("#secondaryPanel").slideToggle();
-        $("#accordion").slideToggle();
+$(document).keydown(function(event){
+    var keyCode = event.keyCode || event.which;
+    switch (keyCode){
+        case 65: // A
+            $('#secondaryPanel').slideToggle();
+            $('#accordion').slideToggle();
+            break;
     }
+    $('#viewport').trigger('customKeyDown', event);
+});
+
+$(document).keyup(function(event){
+    $('#viewport').trigger('customKeyUp', event);
 });
 
 // Angular parts
@@ -20,87 +26,87 @@ var myAppModule = angular.module('sidebar', [])
                         .controller('secondaryPanelController', secondaryPanelController);
 
 function toolbarController($scope) {
-    console.log("test");
+    console.log('test');
     // This list should be obtained from the server depending on the
     // user preferences, account type, etc.
     $scope.tools = {
-        id: "tools_",
+        id: 'tools_',
         list: [
             sofa = {
-                title: "Sofa set",
-                id: "sofa_",
-                prefix: "images/tools/sofa/",
+                title: 'Sofa set',
+                id: 'sofa_',
+                prefix: 'images/tools/sofa/',
                 list: [
-                    "sofa_gray",
-                    "sofa_dalmation_2",
-                    "sofa_dalmation_3"
+                    'sofa_gray',
+                    'sofa_dalmation_2',
+                    'sofa_dalmation_3'
                 ]
             },
             cupboard = {
-                title: "Cupboards",
-                id: "cupboard_",
-                prefix: "images/tools/cupboard/",
+                title: 'Cupboards',
+                id: 'cupboard_',
+                prefix: 'images/tools/cupboard/',
                 list: [
-                    "cupboard_brown"
+                    'cupboard_brown'
                 ]
             },
             table = {
-                title: "Tables",
-                id: "table_",
-                prefix: "images/tools/table/",
+                title: 'Tables',
+                id: 'table_',
+                prefix: 'images/tools/table/',
                 list: [
                 ]
             },
             chair = {
-                title: "Chairs",
-                id: "chair_",
-                prefix: "images/tools/chair/",
+                title: 'Chairs',
+                id: 'chair_',
+                prefix: 'images/tools/chair/',
                 list: [
-                    "chair_black"
+                    'chair_black'
                 ]
             },
             bed = {
-                title: "Bed",
-                id: "bed_",
-                prefix: "images/tools/bed/",
+                title: 'Bed',
+                id: 'bed_',
+                prefix: 'images/tools/bed/',
                 list: [
-                    "bed_brown",
-                    "cube_red"
+                    'bed_brown',
+                    'cube_red'
                 ]
             },
             others = {
-                title: "Others",
-                id: "others_",
-                prefix: "images/tools/others/",
+                title: 'Others',
+                id: 'others_',
+                prefix: 'images/tools/others/',
                 list: [
-                    "painting_rect",
-                    "vase_flower"
+                    'painting_rect',
+                    'vase_flower'
                 ]
             }
         ],
         actions: [
             addToViewport = {
-                title: "Add to Scene",
-                id: "addToViewport_",
+                title: 'Add to Scene',
+                id: 'addToViewport_',
                 onMouseClick: function(tool) {
-                    console.log("Add to viewport");
+                    console.log('Add to viewport');
                     console.log(tool);
-                    $("#viewport").trigger("addToViewport", [tool]);
+                    $('#viewport').trigger('addToViewport', [tool]);
                 }
             },
             favourite = {
-                title: "Favourite",
-                id: "favourite",
+                title: 'Favourite',
+                id: 'favourite',
                 onMouseClick: function(tool) {
-                    console.log("Mark as favourite");
+                    console.log('Mark as favourite');
                     console.log(tool);
                 }            
             },
             similar = {
-                title: "Show similar",
-                id: "showSimilar",
+                title: 'Show similar',
+                id: 'showSimilar',
                 onMouseClick: function(tool) {
-                    console.log("Show similar");
+                    console.log('Show similar');
                     console.log(tool);
                 }
             }
@@ -108,7 +114,7 @@ function toolbarController($scope) {
     };
 
     $scope.onActionClick = function(action, tool) {
-        console.log("actions clicked");
+        console.log('actions clicked');
         action.onMouseClick(tool);
     }
 }
