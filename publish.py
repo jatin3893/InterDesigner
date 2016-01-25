@@ -30,11 +30,9 @@ repo.git.merge(masterBranch)
 for path, dirs, files in os.walk(os.getcwd()):
     for f in files:
         if f.endswith('.html'):
-            htmlFile = open(f, 'a+')
+            htmlFile = open(path + '/' + f, 'a+')
             contents = mmap.mmap(htmlFile.fileno(), 0, access = mmap.ACCESS_READ)
             if contents.find('GoogleAnalyticsObject') == -1:
-                # htmlFile.close()
-                # htmlFile = open(f, 'a')
                 htmlFile.write(configText)
                 modifiedFiles.append(f)
             htmlFile.close()
@@ -42,7 +40,7 @@ for path, dirs, files in os.walk(os.getcwd()):
 # Commit and Push the changes to gh-pages if HEAD is dirty
 # Add date time in commit messgae for reference
 if len(modifiedFiles) != 0:
-    commitMessage = '-m ' + datetime.datetime.now().__str__() + ': Add ga track code to gh-pages'
+    commitMessage = '-m ' + '"' + datetime.datetime.now().__str__() + ': Add ga track code to gh-pages"'
     log('Adding files to be committed')
     for f in modifiedFiles:
         repo.git.add(f)
