@@ -40,7 +40,7 @@ for path, dirs, files in os.walk(os.getcwd()):
 # Commit and Push the changes to gh-pages if HEAD is dirty
 # Add date time in commit messgae for reference
 if len(modifiedFiles) != 0:
-    commitMessage = '-m ' + datetime.datetime.now().__str__() + ': Add ga track code to gh-pages'
+    commitMessage = '-m ' + '"' + datetime.datetime.now().__str__() + ': Add ga track code to gh-pages"'
     log('Adding files to be committed')
     for f in modifiedFiles:
         repo.git.add(f)
