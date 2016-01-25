@@ -30,11 +30,9 @@ repo.git.merge(masterBranch)
 for path, dirs, files in os.walk(os.getcwd()):
     for f in files:
         if f.endswith('.html'):
-            htmlFile = open(f, 'a+')
+            htmlFile = open(path + '/' + f, 'a+')
             contents = mmap.mmap(htmlFile.fileno(), 0, access = mmap.ACCESS_READ)
             if contents.find('GoogleAnalyticsObject') == -1:
-                # htmlFile.close()
-                # htmlFile = open(f, 'a')
                 htmlFile.write(configText)
                 modifiedFiles.append(f)
             htmlFile.close()
