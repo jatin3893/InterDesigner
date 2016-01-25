@@ -57,30 +57,27 @@
 </div>
 </body>
 <script type="text/javascript">
-var pacmanAppModule = angular.module('pacman', [])
-                        .controller('pacmanController', pacmanController)
+    var pacmanAppModule = angular.module('pacman', [])
+                            .controller('pacmanController', pacmanController);
 
-function pacmanController($scope) {
-    $scope.changeDirection = function(direction) {
-        $('#viewport').trigger('updateDirection', direction);
-    }
-    $scope.time = 0.00;
-    var score;
-
-    $('#clock').on('start', function(event) {
+    function pacmanController($scope) {
+        $scope.changeDirection = function(direction) {
+            $('#viewport').trigger('updateDirection', direction);
+        }
         $scope.time = 0.00;
-        score = setInterval(function() {
-            $scope.time = $scope.time + 0.01;
-            document.getElementById("clock").innerHTML = ($scope.time).toFixed(2);
-        }, 10);
-    });
-    $('#clock').on('stop', function(event) {
-        clearInterval(score);
-    });
-}
-</script>
+        var score;
 
-<script type="text/javascript">
+        $('#clock').on('start', function(event) {
+            $scope.time = 0.00;
+            score = setInterval(function() {
+                $scope.time = $scope.time + 0.01;
+                document.getElementById("clock").innerHTML = ($scope.time).toFixed(2);
+            }, 10);
+        });
+        $('#clock').on('stop', function(event) {
+            clearInterval(score);
+        });
+    }
     // Initial setup of scene
     const LEFT = 0;
     const UP = 1;
@@ -129,8 +126,26 @@ function pacmanController($scope) {
     scene.add( lights[1] );
     scene.add( lights[2] );
 
+    var boundaryGeom = new THREE.CubeGeometry(1, 2, gridWidth + 2); 
+    var boundaryMater = new THREE.MeshPhongMaterial({ color: 0x00ff00, emissive: 0x072534, side: THREE.DoubleSide, shading: THREE.FlatShading });
+    boundary1 = new THREE.Mesh(boundaryGeom, boundaryMater);
+    boundary2 = new THREE.Mesh(boundaryGeom, boundaryMater);
+    boundary1.translateX(gridHeight / 2 + 0.5);
+    boundary2.translateX(-gridHeight / 2 - 0.5);
+    scene.add(boundary1);
+    scene.add(boundary2);
+
+    var boundaryGeom = new THREE.CubeGeometry(gridHeight + 2, 2, 1); 
+    var boundaryMater = new THREE.MeshPhongMaterial({ color: 0x00ff00, emissive: 0x072534, side: THREE.DoubleSide, shading: THREE.FlatShading });
+    boundary1 = new THREE.Mesh(boundaryGeom, boundaryMater);
+    boundary2 = new THREE.Mesh(boundaryGeom, boundaryMater);
+    boundary1.translateZ(gridWidth / 2 + 0.5);
+    boundary2.translateZ(-gridWidth / 2 - 0.5);
+    scene.add(boundary1);
+    scene.add(boundary2);
+
     var geometry = new THREE.PlaneGeometry(gridHeight, gridWidth);
-    var material = new THREE.MeshBasicMaterial( {color: 0x0a0a0a, side: THREE.DoubleSide} );
+    var material = new THREE.MeshPhongMaterial( {color: 0x005500, emissive: 0x072534, side: THREE.DoubleSide} );
     var plane = new THREE.Mesh( geometry, material );
     plane.rotation.x = Math.PI / 2;
     scene.add(plane);
@@ -252,7 +267,8 @@ function pacmanController($scope) {
                         side: THREE.DoubleSide,
                         shading: THREE.FlatShading
                     });
-        botPiece = new THREE.Mesh( geometry, material ); 
+        botPiece = new THREE.Mesh( geometry, material );
+        botPiece.translateX(0.5); 
         var bot = {}
         bot.piece = botPiece;
         bot.direction = LEFT;
@@ -269,7 +285,7 @@ function pacmanController($scope) {
 
         var obsGeometry = new THREE.CubeGeometry(1, 1, 1); 
         var obsMaterial = new THREE.MeshPhongMaterial({
-                        color: 0xffffff,
+                        color: 0xff0000,
                         emissive: 0x072534,
                         side: THREE.DoubleSide,
                         shading: THREE.FlatShading
@@ -288,6 +304,7 @@ function pacmanController($scope) {
             obstacle.position.x = random1 - gridWidth / 2;
             obstacle.position.y = 0;
             obstacle.position.z = random2 - gridHeight / 2;
+            obstacle.translateX(0.5);
             scene.add(obstacle);
         }
 
@@ -299,6 +316,7 @@ function pacmanController($scope) {
                         shading: THREE.FlatShading
                     });
         player1Piece = new THREE.Mesh( geometry, material ); 
+        player1Piece.translateX(0.5); 
         player1.piece = player1Piece;
         player1.direction = LEFT;
         player1.nextDirection = undefined;
