@@ -18,7 +18,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "{{url}}/health2"
+				"url": "{{url}}/health"
 			},
 			"response": []
 		}
