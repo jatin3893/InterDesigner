@@ -7,7 +7,7 @@
 	"item": [
 		{
 			"name": "FB Webhook Connect",
-			"_postman_id": "4450d1b5-a24c-4683-9b6f-ead21d1afb6f",
+			"id": "4450d1b5-a24c-4683-9b6f-ead21d1afb6f",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -16,12 +16,9 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {}
-					}
+					"raw": ""
 				},
-				"url": "{{url}}/health"
+				"url": "{{url}}/health2"
 			},
 			"response": []
 		}
