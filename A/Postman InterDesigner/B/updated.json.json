@@ -1,0 +1,22 @@
+{
+	"info": {
+		"_postman_id": "76020274-2e72-4b98-9e27-1a3c613cd045",
+		"name": "Collection 1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://api.interakt.ai",
+			"id": "5a64a2b2-59f0-4b4d-9239-7c8dde0ed9fb",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://api.interakt"
+			},
+			"response": []
+		}
+	]
+}
